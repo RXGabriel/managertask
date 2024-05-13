@@ -3,11 +3,25 @@ import axios from "axios";
 import "./taskItem.scss";
 import { useAlert } from "react-alert";
 
-const TaskItem = ({ task }) => {
+const TaskItem = ({ task, fetchTasks }) => {
   const alert = useAlert();
   const handleTaskDeletion = async () => {
     try {
-      await axios.delete(`http://localhost:8000/tasks/${task.id}`);
+      await axios.delete(`http://localhost:8000/tasks/${task._id}`);
+      await fetchTasks();
+      alert.success("A tarefa foi removida com sucesso!");
+    } catch (error) {
+      alert.error("Algo deu errado.");
+    }
+  };
+
+  const handleTaskCompletionChange = async (e) => {
+    try {
+      await axios.patch(`http://localhost:8000/tasks/${task._id}`, {
+        isCompleted: e.target.checked,
+      });
+      await fetchTasks();
+      alert.success("A tarefa foi modificada com sucesso!");
     } catch (error) {
       alert.error("Algo deu errado.");
     }
@@ -24,7 +38,11 @@ const TaskItem = ({ task }) => {
           }
         >
           {task.description}
-          <input type="checkbox" defaultChecked={task.isCompleted} />
+          <input
+            type="checkbox"
+            defaultChecked={task.isCompleted}
+            onChange={(e) => handleTaskCompletionChange(e)}
+          />
           <span
             className={task.isCompleted ? "checkmark completed" : "checkmark"}
           ></span>
