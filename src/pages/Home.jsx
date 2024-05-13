@@ -1,5 +1,5 @@
-import { SideBar } from "../components/SideBar";
-import { Tasks } from "../components/Tasks";
+import SideBar from "../components/SideBar";
+import Tasks from "../components/Tasks";
 import "./home.scss";
 
 const Home = () => {
