@@ -1,4 +1,4 @@
-import "./CustomInput.scss";
+import "./customInput.scss";
 
 const CustomInput = ({ label, value, onChange }) => {
   return (
