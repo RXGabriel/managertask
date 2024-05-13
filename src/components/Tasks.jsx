@@ -7,7 +7,7 @@ import AddTask from "./AddTask";
 const Tasks = () => {
   const [tasks] = useState([]);
 
-  const fetchTask = async () => {
+  const fetchTasks = async () => {
     try {
       const { data } = await axios.get("localhost:8000/tasks");
       // eslint-disable-next-line no-undef
@@ -18,7 +18,7 @@ const Tasks = () => {
   };
 
   useEffect(() => {
-    fetchTask();
+    fetchTasks();
   }, []);
 
   return (
@@ -27,7 +27,7 @@ const Tasks = () => {
 
       <div className="last-tasks">
         <h3>Últimas Tarefas</h3>
-        <AddTask />
+        <AddTask fetchTasks={fetchTasks} />
         <div className="tasks-list">
           {tasks
             .filter((task) => task.isCompleted === false)
