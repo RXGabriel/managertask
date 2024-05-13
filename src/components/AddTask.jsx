@@ -10,7 +10,7 @@ const AddTask = () => {
   return (
     <div className="add-task-container">
       <CustomInput
-        label="Adicione tarefa..."
+        label="Adicionar tarefa..."
         value={task}
         onChange={onChange}
       />
