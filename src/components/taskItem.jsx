@@ -10,7 +10,7 @@ const TaskItem = ({ task, fetchTasks }) => {
       await axios.delete(`http://localhost:8000/tasks/${task._id}`);
       await fetchTasks();
       alert.success("A tarefa foi removida com sucesso!");
-    } catch (error) {
+    } catch (_error) {
       alert.error("Algo deu errado.");
     }
   };
@@ -22,7 +22,7 @@ const TaskItem = ({ task, fetchTasks }) => {
       });
       await fetchTasks();
       alert.success("A tarefa foi modificada com sucesso!");
-    } catch (error) {
+    } catch (_error) {
       alert.error("Algo deu errado.");
     }
   };

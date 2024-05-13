@@ -1,19 +1,20 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useAlert } from "react-alert";
 import "./tasks.scss";
 import TaskItem from "./TaskItem";
 import AddTask from "./AddTask";
 
 const Tasks = () => {
   const [tasks] = useState([]);
-
+  const alert = useAlert();
   const fetchTasks = async () => {
     try {
       const { data } = await axios.get("localhost:8000/tasks");
       // eslint-disable-next-line no-undef
       setTasks(data);
-    } catch (error) {
-      console.log(error);
+    } catch (_error) {
+      alert.error("Não foi possível recuperar as tarefas.");
     }
   };
 
