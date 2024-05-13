@@ -5,10 +5,13 @@ import { useAlert } from "react-alert";
 
 const TaskItem = ({ task, fetchTasks }) => {
   const alert = useAlert();
+
   const handleTaskDeletion = async () => {
     try {
       await axios.delete(`http://localhost:8000/tasks/${task._id}`);
+
       await fetchTasks();
+
       alert.success("A tarefa foi removida com sucesso!");
     } catch (_error) {
       alert.error("Algo deu errado.");
@@ -20,7 +23,9 @@ const TaskItem = ({ task, fetchTasks }) => {
       await axios.patch(`http://localhost:8000/tasks/${task._id}`, {
         isCompleted: e.target.checked,
       });
+
       await fetchTasks();
+
       alert.success("A tarefa foi modificada com sucesso!");
     } catch (_error) {
       alert.error("Algo deu errado.");
@@ -50,7 +55,7 @@ const TaskItem = ({ task, fetchTasks }) => {
       </div>
 
       <div className="delete">
-        <AiFillDelete size={18} color="#f97474" onClick={handleTaskDeletion} />
+        <AiFillDelete size={18} color="#F97474" onClick={handleTaskDeletion} />
       </div>
     </div>
   );
